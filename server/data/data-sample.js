@@ -467,18 +467,6 @@ export const kpisSample = [
 
 export const products = [
     {
-        _id: "123456789012345678901234",
-        price: "$420.69",
-        name: "test",
-        expense: "$0.97",
-        transactions: [
-            "63bf7ccef03239554c002449",
-            "63bf7ccef03239855d00155c",
-            "63bf7ccef032397b4f001603",
-            "63bf7ccef03239eb9d0016d4",
-        ],
-    },
-    {
         _id: "63bf7ac9f03239e002001600",
         price: "$43.41",
         name: "test",
