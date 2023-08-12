@@ -55,12 +55,12 @@ const Predictions = () => {
                 <Button
                     onClick={() => setIsPredictions(!isPredictions)}
                     sx={{
-                        color: palette.grey[900],
+                        color: palette.secondary[500],
                         bgcolor: palette.grey[700],
                         boxShadow: "0.1rem 0.1rem 0.1rem 0.1rem rgba(0,0,0,0.4)",
                     }}
                 >
-                    SHOW PREDICTED INCOME FOR NEXT YEAR
+                    TOGGLE PREDICTED INCOME FOR NEXT YEAR
                 </Button>
             </FlexBetween>
 
