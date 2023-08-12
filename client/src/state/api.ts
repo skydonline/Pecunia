@@ -1,18 +1,26 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { GetKpisResponse } from "./types";
+import { GetKpisResponse, GetProductsResponse, GetTransactionsResponse } from "./types";
 
 export const api = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
     reducerPath: "main",
-    tagTypes: ["Kpis"],
+    tagTypes: ["Kpis", "Products", "Transactions"],
     endpoints: (build) => ({
         // Single API call
         getKpis: build.query<Array<GetKpisResponse>, void>({
             query: () => "kpi/kpis/",
             providesTags: ["Kpis"],
         }),
+        getProducts: build.query<Array<GetProductsResponse>, void>({
+            query: () => "product/products/",
+            providesTags: ["Products"],
+        }),
+        getTransactions: build.query<Array<GetTransactionsResponse>, void>({
+            query: () => "transaction/transactions/",
+            providesTags: ["Transactions"],
+        }),
     }),
 });
 
 // Single API hook, use is prefix and Query is suffix of single API
-export const { useGetKpisQuery } = api;
+export const { useGetKpisQuery, useGetProductsQuery, useGetTransactionsQuery } = api;

@@ -6,16 +6,19 @@ import { useMemo } from "react";
 import {
     ResponsiveContainer,
     AreaChart,
-    CartesianGrid,
     XAxis,
     YAxis,
     Tooltip,
     Area,
+    Line,
+    CartesianGrid,
+    Legend,
+    LineChart,
+    BarChart,
+    Bar,
 } from "recharts";
 
-type Props = {};
-
-const Row1 = (props: Props) => {
+const Row1 = () => {
     const { palette } = useTheme();
     const { data } = useGetKpisQuery();
     console.log("data:", data);
@@ -28,6 +31,31 @@ const Row1 = (props: Props) => {
                     name: month.substring(0, 3),
                     income: income,
                     expenses: expenses,
+                };
+            })
+        );
+    }, [data]);
+
+    const incomeNetIncome = useMemo(() => {
+        return (
+            data &&
+            data[0].monthlyData.map(({ month, income, expenses }) => {
+                return {
+                    name: month.substring(0, 3),
+                    income: income,
+                    netIncome: (income - expenses).toFixed(2),
+                };
+            })
+        );
+    }, [data]);
+
+    const income = useMemo(() => {
+        return (
+            data &&
+            data[0].monthlyData.map(({ month, income }) => {
+                return {
+                    name: month.substring(0, 3),
+                    income: income,
                 };
             })
         );
@@ -107,8 +135,92 @@ const Row1 = (props: Props) => {
                 </ResponsiveContainer>
             </DashboardBox>
 
-            <DashboardBox gridArea="b"></DashboardBox>
-            <DashboardBox gridArea="c"></DashboardBox>
+            <DashboardBox gridArea="b">
+                <BoxHeader
+                    title="Income and Net Income"
+                    subtitle="top line represents income, bottom line represents net income"
+                    sideText="+4%"
+                />
+                <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                        data={incomeNetIncome}
+                        margin={{
+                            top: 20,
+                            right: 0,
+                            left: -10,
+                            bottom: 55,
+                        }}
+                    >
+                        <CartesianGrid vertical={false} stroke={palette.grey[800]} />
+                        <XAxis dataKey="name" tickLine={false} style={{ fontSize: "10px" }} />
+                        <YAxis
+                            yAxisId="left"
+                            axisLine={false}
+                            tickLine={false}
+                            style={{ fontSize: "10px" }}
+                        />
+                        <YAxis
+                            yAxisId="right"
+                            orientation="right"
+                            axisLine={false}
+                            tickLine={false}
+                            style={{ fontSize: "10px" }}
+                        />
+                        <Tooltip />
+                        <Legend
+                            height={20}
+                            wrapperStyle={{
+                                margin: "0 0 10px 0",
+                            }}
+                        />
+                        <Line
+                            yAxisId="left"
+                            type="monotone"
+                            dataKey="netIncome"
+                            name="net income"
+                            stroke={palette.tertiary[500]}
+                        />
+                        <Line
+                            yAxisId="right"
+                            type="monotone"
+                            dataKey="income"
+                            stroke={palette.primary.main}
+                        />
+                    </LineChart>
+                </ResponsiveContainer>
+            </DashboardBox>
+
+            <DashboardBox gridArea="c">
+                <BoxHeader
+                    title="Income Month by Month"
+                    subtitle="graph representing monthly income"
+                    sideText="+4%"
+                />
+                <ResponsiveContainer width="100%" height="100%">
+                    <BarChart
+                        width={500}
+                        height={300}
+                        data={income}
+                        margin={{
+                            top: 17,
+                            right: 15,
+                            left: -5,
+                            bottom: 58,
+                        }}
+                    >
+                        <CartesianGrid vertical={false} stroke={palette.grey[800]} />
+                        <XAxis
+                            dataKey="name"
+                            axisLine={false}
+                            tickLine={false}
+                            style={{ fontSize: "10px" }}
+                        />
+                        <YAxis axisLine={false} tickLine={false} style={{ fontSize: "10px" }} />
+                        <Tooltip />
+                        <Bar dataKey="income" fill="url(#colorIncome)" />
+                    </BarChart>
+                </ResponsiveContainer>
+            </DashboardBox>
         </>
     );
 };

@@ -467,8 +467,21 @@ export const kpisSample = [
 
 export const products = [
     {
+        _id: "123456789012345678901234",
+        price: "$420.69",
+        name: "test",
+        expense: "$0.97",
+        transactions: [
+            "63bf7ccef03239554c002449",
+            "63bf7ccef03239855d00155c",
+            "63bf7ccef032397b4f001603",
+            "63bf7ccef03239eb9d0016d4",
+        ],
+    },
+    {
         _id: "63bf7ac9f03239e002001600",
         price: "$43.41",
+        name: "test",
         expense: "$5.97",
         transactions: [
             "63bf7ccef03239554c002449",
@@ -480,6 +493,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239e002001601",
         price: "$60.13",
+        name: "test",
         expense: "$9.12",
         transactions: [
             "63bf7ccef032396a8e001696",
@@ -491,12 +505,14 @@ export const products = [
     {
         _id: "63bf7ac9f03239e002001602",
         price: "$195.05",
+        name: "test",
         expense: "$6.72",
         transactions: ["63bf7ccef03239e002001606", "63bf7ccef0323922d200169a"],
     },
     {
         _id: "63bf7ac9f03239e002001603",
         price: "$46.25",
+        name: "test",
         expense: "$9.95",
         transactions: [
             "63bf7ccef03239aec900155b",
@@ -507,6 +523,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239e002001604",
         price: "$87.41",
+        name: "test",
         expense: "$7.97",
         transactions: [
             "63bf7ccef03239855d00155d",
@@ -519,6 +536,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239e002001605",
         price: "$73.28",
+        name: "test",
         expense: "$7.85",
         transactions: [
             "63bf7ccef03239966c0016a0",
@@ -531,12 +549,14 @@ export const products = [
     {
         _id: "63bf7ac9f03239343e00169b",
         price: "$130.65",
+        name: "test",
         expense: "$7.95",
         transactions: ["63bf7ccef0323901e6001560", "63bf7ccef032396d89000013"],
     },
     {
         _id: "63bf7ac9f03239343e00169c",
         price: "$198.54",
+        name: "test",
         expense: "$9.50",
         transactions: [
             "63bf7ccef03239eb9d0016d9",
@@ -548,12 +568,14 @@ export const products = [
     {
         _id: "63bf7ac9f03239343e00169d",
         price: "$147.32",
+        name: "test",
         expense: "$5.86",
         transactions: ["63bf7ccef03239343e0016a9", "63bf7ccef03239f920001690"],
     },
     {
         _id: "63bf7ac9f03239343e00169e",
         price: "$187.22",
+        name: "test",
         expense: "$5.82",
         transactions: [
             "63bf7ccef03239aec9001560",
@@ -564,6 +586,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239343e00169f",
         price: "$162.43",
+        name: "test",
         expense: "$3.28",
         transactions: [
             "63bf7ccef032395ccf001697",
@@ -574,12 +597,14 @@ export const products = [
     {
         _id: "63bf7ac9f03239343e0016a0",
         price: "$30.09",
+        name: "test",
         expense: "$8.55",
         transactions: ["63bf7ccef03239343e0016a3"],
     },
     {
         _id: "63bf7ac9f0323901e6001551",
         price: "$31.07",
+        name: "test",
         expense: "$4.98",
         transactions: [
             "63bf7ccef032395ccf001695",
@@ -592,6 +617,7 @@ export const products = [
     {
         _id: "63bf7ac9f0323901e6001552",
         price: "$12.21",
+        name: "test",
         expense: "$6.82",
         transactions: [
             "63bf7ccef03239855d00155c",
@@ -604,6 +630,7 @@ export const products = [
     {
         _id: "63bf7ac9f0323901e6001553",
         price: "$76.31",
+        name: "test",
         expense: "$3.84",
         transactions: [
             "63bf7ccef03239e002001608",
@@ -614,6 +641,7 @@ export const products = [
     {
         _id: "63bf7ac9f0323901e6001554",
         price: "$169.87",
+        name: "test",
         expense: "$8.35",
         transactions: [
             "63bf7ccef03239eb9d0016d5",
@@ -624,6 +652,7 @@ export const products = [
     {
         _id: "63bf7ac9f0323901e6001555",
         price: "$187.36",
+        name: "test",
         expense: "$8.12",
         transactions: [
             "63bf7ccef032394f5f00243a",
@@ -634,6 +663,7 @@ export const products = [
     {
         _id: "63bf7ac9f0323901e6001556",
         price: "$67.29",
+        name: "test",
         expense: "$6.32",
         transactions: [
             "63bf7ccef032396d89000015",
@@ -644,6 +674,7 @@ export const products = [
     {
         _id: "63bf7ac9f032394cbd001699",
         price: "$85.35",
+        name: "test",
         expense: "$9.33",
         transactions: [
             "63bf7ccef03239aec9001558",
@@ -655,6 +686,7 @@ export const products = [
     {
         _id: "63bf7ac9f032394cbd00169a",
         price: "$35.75",
+        name: "test",
         expense: "$9.93",
         transactions: [
             "63bf7ccef03239554c002453",
@@ -665,6 +697,7 @@ export const products = [
     {
         _id: "63bf7ac9f032394cbd00169b",
         price: "$59.80",
+        name: "test",
         expense: "$1.51",
         transactions: [
             "63bf7ccef0323937a5001690",
@@ -677,18 +710,21 @@ export const products = [
     {
         _id: "63bf7ac9f032394cbd00169c",
         price: "$86.45",
+        name: "test",
         expense: "$3.55",
         transactions: ["63bf7ccef032396d8900000f"],
     },
     {
         _id: "63bf7ac9f032394cbd00169d",
         price: "$142.21",
+        name: "test",
         expense: "$1.85",
         transactions: ["63bf7ccef032396a8e001698", "63bf7ccef03239eb9d0016d0"],
     },
     {
         _id: "63bf7ac9f032394cbd00169e",
         price: "$10.01",
+        name: "test",
         expense: "$5.61",
         transactions: [
             "63bf7ccef03239e002001610",
@@ -701,36 +737,42 @@ export const products = [
     {
         _id: "63bf7ac9f03239cf1b001698",
         price: "$112.78",
+        name: "test",
         expense: "$6.74",
         transactions: ["63bf7ccef032396a8e00169d", "63bf7ccef032396a8e001695"],
     },
     {
         _id: "63bf7ac9f03239cf1b001699",
         price: "$156.34",
+        name: "test",
         expense: "$6.26",
         transactions: ["63bf7ccef03239e002001606"],
     },
     {
         _id: "63bf7ac9f03239cf1b00169a",
         price: "$119.34",
+        name: "test",
         expense: "$8.62",
         transactions: ["63bf7ccef0323975d600169e", "63bf7ccef03239554c00244b"],
     },
     {
         _id: "63bf7ac9f03239cf1b00169b",
         price: "$87.49",
+        name: "test",
         expense: "$8.74",
         transactions: ["63bf7ccef03239343e0016ac", "63bf7ccef0323937a5001698"],
     },
     {
         _id: "63bf7ac9f03239cf1b00169c",
         price: "$34.52",
+        name: "test",
         expense: "$2.31",
         transactions: ["63bf7ccef03239aec9001562", "63bf7ccef0323937a500168d"],
     },
     {
         _id: "63bf7ac9f03239cf1b00169d",
         price: "$90.83",
+        name: "test",
         expense: "$7.83",
         transactions: [
             "63bf7ccef0323975d6001698",
@@ -743,6 +785,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239aec9001551",
         price: "$181.98",
+        name: "test",
         expense: "$3.02",
         transactions: [
             "63bf7ccef032395ccf001698",
@@ -754,12 +797,14 @@ export const products = [
     {
         _id: "63bf7ac9f03239aec9001552",
         price: "$62.17",
+        name: "test",
         expense: "$9.52",
         transactions: ["63bf7ccef03239855d00155e", "63bf7ccef03239966c00169e"],
     },
     {
         _id: "63bf7ac9f03239aec9001553",
         price: "$83.76",
+        name: "test",
         expense: "$1.09",
         transactions: [
             "63bf7ccef0323975d60016a3",
@@ -771,6 +816,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239aec9001554",
         price: "$62.47",
+        name: "test",
         expense: "$2.38",
         transactions: [
             "63bf7ccef03239eb9d0016e4",
@@ -783,6 +829,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239aec9001555",
         price: "$54.68",
+        name: "test",
         expense: "$5.12",
         transactions: [
             "63bf7ccef032396d89000013",
@@ -794,6 +841,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239aec9001556",
         price: "$91.72",
+        name: "test",
         expense: "$4.73",
         transactions: [
             "63bf7ccef03239cf1b0016a3",
@@ -804,6 +852,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239554c002443",
         price: "$159.65",
+        name: "test",
         expense: "$3.79",
         transactions: [
             "63bf7ccef03239554c00244e",
@@ -816,6 +865,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239554c002444",
         price: "$190.89",
+        name: "test",
         expense: "$5.24",
         transactions: [
             "63bf7ccef03239343e0016a2",
@@ -828,6 +878,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239554c002445",
         price: "$155.13",
+        name: "test",
         expense: "$1.68",
         transactions: [
             "63bf7ccef03239cf1b00169f",
@@ -839,12 +890,14 @@ export const products = [
     {
         _id: "63bf7ac9f03239554c002446",
         price: "$43.82",
+        name: "test",
         expense: "$7.85",
         transactions: ["63bf7ccef03239eb9d0016dd", "63bf7ccef0323901e6001557"],
     },
     {
         _id: "63bf7ac9f03239554c002447",
         price: "$58.31",
+        name: "test",
         expense: "$9.94",
         transactions: [
             "63bf7ccef03239cf1b0016a6",
@@ -856,6 +909,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239554c002448",
         price: "$138.47",
+        name: "test",
         expense: "$6.40",
         transactions: [
             "63bf7ccef032397b4f001606",
@@ -866,6 +920,7 @@ export const products = [
     {
         _id: "63bf7ac9f032397420001696",
         price: "$10.40",
+        name: "test",
         expense: "$3.20",
         transactions: [
             "63bf7ccef03239966c00169a",
@@ -877,12 +932,14 @@ export const products = [
     {
         _id: "63bf7ac9f032397420001697",
         price: "$22.48",
+        name: "test",
         expense: "$5.36",
         transactions: ["63bf7ccef03239cf1b0016a6", "63bf7ccef03239eb9d0016df"],
     },
     {
         _id: "63bf7ac9f032397420001698",
         price: "$92.16",
+        name: "test",
         expense: "$9.12",
         transactions: [
             "63bf7ccef03239cf1b0016a9",
@@ -894,6 +951,7 @@ export const products = [
     {
         _id: "63bf7ac9f032397420001699",
         price: "$140.77",
+        name: "test",
         expense: "$9.02",
         transactions: [
             "63bf7ccef0323974200016a2",
@@ -904,6 +962,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239742000169a",
         price: "$100.62",
+        name: "test",
         expense: "$6.55",
         transactions: [
             "63bf7ccef032394f5f002442",
@@ -915,6 +974,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239742000169b",
         price: "$69.13",
+        name: "test",
         expense: "$6.26",
         transactions: [
             "63bf7ccef03239eb9d0016d0",
@@ -925,6 +985,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239966c001692",
         price: "$124.82",
+        name: "test",
         expense: "$8.49",
         transactions: [
             "63bf7ccef03239eb9d0016de",
@@ -937,6 +998,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239966c001693",
         price: "$196.68",
+        name: "test",
         expense: "$3.32",
         transactions: [
             "63bf7ccef03239554c002452",
@@ -949,6 +1011,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239966c001694",
         price: "$172.48",
+        name: "test",
         expense: "$2.38",
         transactions: [
             "63bf7ccef032394cbd0016a0",
@@ -961,12 +1024,14 @@ export const products = [
     {
         _id: "63bf7ac9f03239966c001695",
         price: "$112.84",
+        name: "test",
         expense: "$4.34",
         transactions: ["63bf7ccef032396d89000013", "63bf7ccef03239554c00244c"],
     },
     {
         _id: "63bf7ac9f03239966c001696",
         price: "$37.97",
+        name: "test",
         expense: "$5.76",
         transactions: [
             "63bf7ccef032394f5f002440",
@@ -979,6 +1044,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239966c001697",
         price: "$123.72",
+        name: "test",
         expense: "$2.85",
         transactions: [
             "63bf7ccef03239eb9d0016e3",
@@ -989,18 +1055,21 @@ export const products = [
     {
         _id: "63bf7ac9f0323975d6001692",
         price: "$15.02",
+        name: "test",
         expense: "$2.00",
         transactions: ["63bf7ccef032396a8e001697", "63bf7ccef0323975d6001698"],
     },
     {
         _id: "63bf7ac9f0323975d6001693",
         price: "$19.69",
+        name: "test",
         expense: "$2.65",
         transactions: ["63bf7ccef0323937a500168e"],
     },
     {
         _id: "63bf7ac9f0323975d6001694",
         price: "$30.80",
+        name: "test",
         expense: "$5.02",
         transactions: [
             "63bf7ccef0323975d600169f",
@@ -1012,12 +1081,14 @@ export const products = [
     {
         _id: "63bf7ac9f0323975d6001695",
         price: "$90.56",
+        name: "test",
         expense: "$2.93",
         transactions: ["63bf7ccef0323975d600169d"],
     },
     {
         _id: "63bf7ac9f0323975d6001696",
         price: "$30.37",
+        name: "test",
         expense: "$8.63",
         transactions: [
             "63bf7ccef0323922d200169c",
@@ -1028,6 +1099,7 @@ export const products = [
     {
         _id: "63bf7ac9f0323975d6001697",
         price: "$149.26",
+        name: "test",
         expense: "$1.33",
         transactions: [
             "63bf7ccef03239554c00244d",
@@ -1039,6 +1111,7 @@ export const products = [
     {
         _id: "63bf7ac9f032396a8e00168e",
         price: "$167.45",
+        name: "test",
         expense: "$9.30",
         transactions: [
             "63bf7ccef0323937a5001693",
@@ -1049,24 +1122,28 @@ export const products = [
     {
         _id: "63bf7ac9f032396a8e00168f",
         price: "$50.36",
+        name: "test",
         expense: "$4.38",
         transactions: ["63bf7ccef032394f5f00243f"],
     },
     {
         _id: "63bf7ac9f032396a8e001690",
         price: "$151.61",
+        name: "test",
         expense: "$2.27",
         transactions: ["63bf7ccef03239966c001699", "63bf7ccef03239742000169f"],
     },
     {
         _id: "63bf7ac9f032396a8e001691",
         price: "$191.46",
+        name: "test",
         expense: "$5.60",
         transactions: ["63bf7ccef0323901e600155f"],
     },
     {
         _id: "63bf7ac9f032396a8e001692",
         price: "$131.96",
+        name: "test",
         expense: "$8.80",
         transactions: [
             "63bf7ccef032397b4f001605",
@@ -1079,42 +1156,49 @@ export const products = [
     {
         _id: "63bf7ac9f032396a8e001693",
         price: "$164.96",
+        name: "test",
         expense: "$4.16",
         transactions: ["63bf7ccef03239eb9d0016d8"],
     },
     {
         _id: "63bf7ac9f032395ccf00168e",
         price: "$13.57",
+        name: "test",
         expense: "$5.18",
         transactions: ["63bf7ccef032395ccf001695"],
     },
     {
         _id: "63bf7ac9f032395ccf00168f",
         price: "$177.57",
+        name: "test",
         expense: "$7.04",
         transactions: ["63bf7ccef0323922d2001698", "63bf7ccef03239855d00155c"],
     },
     {
         _id: "63bf7ac9f032395ccf001690",
         price: "$172.71",
+        name: "test",
         expense: "$5.73",
         transactions: ["63bf7ccef03239966c00169d"],
     },
     {
         _id: "63bf7ac9f032395ccf001691",
         price: "$17.48",
+        name: "test",
         expense: "$4.81",
         transactions: ["63bf7ccef0323974200016a0", "63bf7ccef0323937a5001692"],
     },
     {
         _id: "63bf7ac9f032395ccf001692",
         price: "$54.13",
+        name: "test",
         expense: "$7.44",
         transactions: ["63bf7ccef0323922d2001694", "63bf7ccef03239eb9d0016df"],
     },
     {
         _id: "63bf7ac9f032395ccf001693",
         price: "$155.93",
+        name: "test",
         expense: "$9.10",
         transactions: [
             "63bf7ccef03239343e0016a7",
@@ -1126,12 +1210,14 @@ export const products = [
     {
         _id: "63bf7ac9f032397b4f0015fb",
         price: "$13.34",
+        name: "test",
         expense: "$6.17",
         transactions: ["63bf7ccef03239cf1b0016a4"],
     },
     {
         _id: "63bf7ac9f032397b4f0015fc",
         price: "$75.89",
+        name: "test",
         expense: "$1.11",
         transactions: [
             "63bf7ccef03239aec900155f",
@@ -1143,6 +1229,7 @@ export const products = [
     {
         _id: "63bf7ac9f032397b4f0015fd",
         price: "$153.85",
+        name: "test",
         expense: "$6.99",
         transactions: [
             "63bf7ccef03239343e0016a3",
@@ -1155,6 +1242,7 @@ export const products = [
     {
         _id: "63bf7ac9f032397b4f0015fe",
         price: "$187.83",
+        name: "test",
         expense: "$6.66",
         transactions: [
             "63bf7ccef0323937a5001692",
@@ -1166,6 +1254,7 @@ export const products = [
     {
         _id: "63bf7ac9f032397b4f0015ff",
         price: "$119.33",
+        name: "test",
         expense: "$1.40",
         transactions: [
             "63bf7ccef032397b4f00160b",
@@ -1178,12 +1267,14 @@ export const products = [
     {
         _id: "63bf7ac9f032397b4f001600",
         price: "$54.00",
+        name: "test",
         expense: "$5.61",
         transactions: ["63bf7ccef03239554c002454", "63bf7ccef032394cbd0016a9"],
     },
     {
         _id: "63bf7ac9f0323922d200168e",
         price: "$144.81",
+        name: "test",
         expense: "$7.45",
         transactions: [
             "63bf7ccef032395ccf00169b",
@@ -1194,18 +1285,21 @@ export const products = [
     {
         _id: "63bf7ac9f0323922d200168f",
         price: "$37.04",
+        name: "test",
         expense: "$5.86",
         transactions: ["63bf7ccef0323974200016a5"],
     },
     {
         _id: "63bf7ac9f0323922d2001690",
         price: "$161.03",
+        name: "test",
         expense: "$4.48",
         transactions: ["63bf7ccef03239966c00169a"],
     },
     {
         _id: "63bf7ac9f0323922d2001691",
         price: "$73.46",
+        name: "test",
         expense: "$7.95",
         transactions: [
             "63bf7ccef032395ccf001696",
@@ -1218,12 +1312,14 @@ export const products = [
     {
         _id: "63bf7ac9f0323922d2001692",
         price: "$120.96",
+        name: "test",
         expense: "$8.90",
         transactions: ["63bf7ccef032396a8e00169e", "63bf7ccef032397b4f001603"],
     },
     {
         _id: "63bf7ac9f0323922d2001693",
         price: "$34.46",
+        name: "test",
         expense: "$9.25",
         transactions: [
             "63bf7ccef032396d89000012",
@@ -1236,18 +1332,21 @@ export const products = [
     {
         _id: "63bf7ac9f032396d89000007",
         price: "$172.27",
+        name: "test",
         expense: "$3.92",
         transactions: ["63bf7ccef03239554c00244b"],
     },
     {
         _id: "63bf7ac9f032396d89000008",
         price: "$20.54",
+        name: "test",
         expense: "$8.12",
         transactions: ["63bf7ccef03239855d001558"],
     },
     {
         _id: "63bf7ac9f032396d89000009",
         price: "$80.31",
+        name: "test",
         expense: "$7.04",
         transactions: [
             "63bf7ccef0323901e6001558",
@@ -1258,18 +1357,21 @@ export const products = [
     {
         _id: "63bf7ac9f032396d8900000a",
         price: "$77.67",
+        name: "test",
         expense: "$4.14",
         transactions: ["63bf7ccef03239343e0016ab"],
     },
     {
         _id: "63bf7ac9f032396d8900000b",
         price: "$47.25",
+        name: "test",
         expense: "$5.53",
         transactions: ["63bf7ccef03239343e0016a8", "63bf7ccef032394f5f00243e"],
     },
     {
         _id: "63bf7ac9f032396d8900000c",
         price: "$181.02",
+        name: "test",
         expense: "$7.57",
         transactions: [
             "63bf7ccef0323922d2001698",
@@ -1282,6 +1384,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239f920001689",
         price: "$67.20",
+        name: "test",
         expense: "$8.37",
         transactions: [
             "63bf7ccef032396a8e00169b",
@@ -1294,18 +1397,21 @@ export const products = [
     {
         _id: "63bf7ac9f03239f92000168a",
         price: "$58.15",
+        name: "test",
         expense: "$3.19",
         transactions: ["63bf7ccef03239f920001690"],
     },
     {
         _id: "63bf7ac9f03239f92000168b",
         price: "$145.65",
+        name: "test",
         expense: "$3.83",
         transactions: ["63bf7ccef032394cbd0016aa"],
     },
     {
         _id: "63bf7ac9f03239f92000168c",
         price: "$134.08",
+        name: "test",
         expense: "$7.03",
         transactions: [
             "63bf7ccef032396a8e00169a",
@@ -1318,6 +1424,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239f92000168d",
         price: "$33.79",
+        name: "test",
         expense: "$4.54",
         transactions: [
             "63bf7ccef032394cbd0016a1",
@@ -1330,6 +1437,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239f92000168e",
         price: "$182.10",
+        name: "test",
         expense: "$9.54",
         transactions: [
             "63bf7ccef032396a8e001698",
@@ -1341,6 +1449,7 @@ export const products = [
     {
         _id: "63bf7ac9f032394f5f002433",
         price: "$129.93",
+        name: "test",
         expense: "$1.15",
         transactions: [
             "63bf7ccef0323975d600169a",
@@ -1352,6 +1461,7 @@ export const products = [
     {
         _id: "63bf7ac9f032394f5f002434",
         price: "$148.47",
+        name: "test",
         expense: "$1.63",
         transactions: [
             "63bf7ccef03239554c00244e",
@@ -1363,6 +1473,7 @@ export const products = [
     {
         _id: "63bf7ac9f032394f5f002435",
         price: "$13.52",
+        name: "test",
         expense: "$9.76",
         transactions: [
             "63bf7ccef03239343e0016a3",
@@ -1374,6 +1485,7 @@ export const products = [
     {
         _id: "63bf7ac9f032394f5f002436",
         price: "$120.88",
+        name: "test",
         expense: "$5.94",
         transactions: [
             "63bf7ccef03239e00200160d",
@@ -1384,12 +1496,14 @@ export const products = [
     {
         _id: "63bf7ac9f032394f5f002437",
         price: "$153.54",
+        name: "test",
         expense: "$9.63",
         transactions: ["63bf7ccef03239eb9d0016d0", "63bf7ccef032396d89000010"],
     },
     {
         _id: "63bf7ac9f032394f5f002438",
         price: "$35.74",
+        name: "test",
         expense: "$8.71",
         transactions: [
             "63bf7ccef0323975d6001698",
@@ -1402,6 +1516,7 @@ export const products = [
     {
         _id: "63bf7ac9f0323937a5001687",
         price: "$120.21",
+        name: "test",
         expense: "$5.00",
         transactions: [
             "63bf7ccef03239554c00244a",
@@ -1414,12 +1529,14 @@ export const products = [
     {
         _id: "63bf7ac9f0323937a5001688",
         price: "$180.06",
+        name: "test",
         expense: "$6.39",
         transactions: ["63bf7ccef03239554c002453"],
     },
     {
         _id: "63bf7ac9f0323937a5001689",
         price: "$92.70",
+        name: "test",
         expense: "$5.53",
         transactions: [
             "63bf7ccef03239343e0016a9",
@@ -1430,6 +1547,7 @@ export const products = [
     {
         _id: "63bf7ac9f0323937a500168a",
         price: "$35.39",
+        name: "test",
         expense: "$2.89",
         transactions: [
             "63bf7ccef0323937a5001694",
@@ -1441,6 +1559,7 @@ export const products = [
     {
         _id: "63bf7ac9f0323937a500168b",
         price: "$159.59",
+        name: "test",
         expense: "$3.54",
         transactions: [
             "63bf7ccef03239eb9d0016d9",
@@ -1452,6 +1571,7 @@ export const products = [
     {
         _id: "63bf7ac9f0323937a500168c",
         price: "$116.66",
+        name: "test",
         expense: "$5.60",
         transactions: [
             "63bf7ccef03239aec900155a",
@@ -1463,6 +1583,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239855d001551",
         price: "$19.66",
+        name: "test",
         expense: "$6.43",
         transactions: [
             "63bf7ccef03239eb9d0016d0",
@@ -1473,6 +1594,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239855d001552",
         price: "$99.78",
+        name: "test",
         expense: "$7.03",
         transactions: [
             "63bf7ccef03239eb9d0016cd",
@@ -1485,12 +1607,14 @@ export const products = [
     {
         _id: "63bf7ac9f03239855d001553",
         price: "$145.56",
+        name: "test",
         expense: "$9.40",
         transactions: ["63bf7ccef0323922d2001694"],
     },
     {
         _id: "63bf7ac9f03239855d001554",
         price: "$133.65",
+        name: "test",
         expense: "$1.03",
         transactions: [
             "63bf7ccef0323937a5001690",
@@ -1503,18 +1627,21 @@ export const products = [
     {
         _id: "63bf7ac9f03239855d001555",
         price: "$174.42",
+        name: "test",
         expense: "$5.30",
         transactions: ["63bf7ccef03239aec9001558"],
     },
     {
         _id: "63bf7ac9f03239855d001556",
         price: "$77.55",
+        name: "test",
         expense: "$1.01",
         transactions: ["63bf7ccef03239e002001607"],
     },
     {
         _id: "63bf7ac9f03239eb9d0016c3",
         price: "$103.01",
+        name: "test",
         expense: "$6.81",
         transactions: [
             "63bf7ccef03239966c001699",
@@ -1527,18 +1654,21 @@ export const products = [
     {
         _id: "63bf7ac9f03239eb9d0016c4",
         price: "$88.02",
+        name: "test",
         expense: "$8.00",
         transactions: ["63bf7ccef0323901e600155f", "63bf7ccef03239eb9d0016e6"],
     },
     {
         _id: "63bf7ac9f03239eb9d0016c5",
         price: "$119.84",
+        name: "test",
         expense: "$8.95",
         transactions: ["63bf7ccef032395ccf001695", "63bf7ccef03239f920001695"],
     },
     {
         _id: "63bf7ac9f03239eb9d0016c6",
         price: "$18.02",
+        name: "test",
         expense: "$5.48",
         transactions: [
             "63bf7ccef03239e00200160b",
@@ -1551,6 +1681,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239eb9d0016c7",
         price: "$121.59",
+        name: "test",
         expense: "$7.27",
         transactions: [
             "63bf7ccef0323975d600169b",
@@ -1562,18 +1693,21 @@ export const products = [
     {
         _id: "63bf7ac9f03239eb9d0016c8",
         price: "$42.71",
+        name: "test",
         expense: "$7.26",
         transactions: ["63bf7ccef032396a8e001696", "63bf7ccef032397b4f001608"],
     },
     {
         _id: "63bf7ac9f03239eb9d0016c9",
         price: "$106.89",
+        name: "test",
         expense: "$2.49",
         transactions: ["63bf7ccef03239966c00169d"],
     },
     {
         _id: "63bf7ac9f03239eb9d0016ca",
         price: "$162.96",
+        name: "test",
         expense: "$2.18",
         transactions: [
             "63bf7ccef03239f920001691",
@@ -1585,6 +1719,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239eb9d0016cb",
         price: "$102.90",
+        name: "test",
         expense: "$1.40",
         transactions: [
             "63bf7ccef03239966c00169f",
@@ -1597,6 +1732,7 @@ export const products = [
     {
         _id: "63bf7ac9f03239eb9d0016cc",
         price: "$21.98",
+        name: "test",
         expense: "$7.86",
         transactions: [
             "63bf7ccef03239343e0016a3",
