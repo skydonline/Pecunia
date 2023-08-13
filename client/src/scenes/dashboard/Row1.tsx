@@ -1,27 +1,34 @@
 import BoxHeader from "@/components/BoxHeader";
 import DashboardBox from "@/components/DashboardBox";
+import FlexBetween from "@/components/FlexBetween";
 import { useGetKpisQuery } from "@/state/api";
-import { useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
+import LocalAtmIcon from "@mui/icons-material/LocalAtm";
+import SavingsIcon from "@mui/icons-material/Savings";
 import { useMemo } from "react";
 import {
     ResponsiveContainer,
-    AreaChart,
     XAxis,
     YAxis,
     Tooltip,
-    Area,
-    Line,
     CartesianGrid,
     Legend,
-    LineChart,
     BarChart,
     Bar,
+    PieChart,
+    Pie,
+    Cell,
 } from "recharts";
+
+const piedata = [
+    { name: "Investments", value: 600 },
+    { name: "Cash", value: 400 },
+];
 
 const Row1 = () => {
     const { palette } = useTheme();
     const { data } = useGetKpisQuery();
-    console.log("data:", data);
+    const pieColors = [palette.primary[800], palette.primary[500]];
 
     const incomeExpenses = useMemo(() => {
         return (
@@ -61,32 +68,123 @@ const Row1 = () => {
         );
     }, [data]);
 
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+
+    let greeting: string;
+
+    if (currentHour < 12) {
+        greeting = "Good morning, Sky.";
+    } else if (currentHour < 18) {
+        greeting = "Good afternoon, Sky.";
+    } else {
+        greeting = "Good evening, Sky.";
+    }
+
     return (
         <>
-            <DashboardBox gridArea="a">
-                <BoxHeader
-                    title="Income and Expenses"
-                    subtitle="top line represents income, bottom line represents expenses"
-                    sideText="+4%"
-                />
-                <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart
-                        width={500}
-                        height={400}
-                        data={incomeExpenses}
+            <DashboardBox gridArea="a" display="flex" alignItems="center" justifyContent="center">
+                <Box>
+                    <Typography
+                        color={palette.primary[400]}
+                        textAlign="center"
+                        fontWeight="700"
+                        fontSize={40}
+                    >
+                        {greeting}
+                    </Typography>
+                    <Typography
+                        color={palette.primary[700]}
+                        textAlign="center"
+                        fontWeight="600"
+                        fontSize={30}
+                    >
+                        Welcome to Pecunia.
+                    </Typography>
+                </Box>
+            </DashboardBox>
+
+            <DashboardBox gridArea="b">
+                <BoxHeader title="Net Worth" icon={SavingsIcon} />
+                <Box display="flex" justifyContent="center" alignItems="center">
+                    <PieChart
+                        width={210}
+                        height={240}
                         margin={{
-                            top: 15,
-                            right: 25,
-                            left: -10,
-                            bottom: 60,
+                            top: 0,
+                            right: 0,
+                            left: 30,
+                            bottom: 0,
                         }}
                     >
+                        <Pie
+                            stroke="none"
+                            data={piedata}
+                            innerRadius={35}
+                            outerRadius={90}
+                            paddingAngle={2}
+                            dataKey="value"
+                        >
+                            {piedata.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={pieColors[index]} />
+                            ))}
+                        </Pie>
+                        <Tooltip />
+                        <Legend verticalAlign="bottom" />
+                    </PieChart>
+                    <Box
+                        display="flex"
+                        flexWrap="wrap"
+                        flexDirection="column"
+                        margin="1.5rem 1rem 0 3rem"
+                    >
+                        <Box flexBasis="40%">
+                            <Typography variant="h3">Cash</Typography>
+                            <Typography m="0.3rem 0" variant="h3" color={palette.primary[300]}>
+                                $83
+                            </Typography>
+                            <Typography variant="h5">Chequing and Savings</Typography>
+                        </Box>
+                        <Box flexBasis="40%" marginTop={4}>
+                            <Typography variant="h3">Investments</Typography>
+                            <Typography m="0.3rem 0" variant="h3" color={palette.primary[300]}>
+                                $83
+                            </Typography>
+                            <Typography variant="h5">TFSA</Typography>
+                        </Box>
+                    </Box>
+                </Box>
+            </DashboardBox>
+
+            <DashboardBox gridArea="c">
+                <BoxHeader title="Monthly Income" icon={LocalAtmIcon} />
+                <ResponsiveContainer width="100%" height="100%">
+                    <BarChart
+                        width={500}
+                        height={300}
+                        data={income}
+                        margin={{
+                            top: 17,
+                            right: 15,
+                            left: -5,
+                            bottom: 50,
+                        }}
+                    >
+                        <CartesianGrid vertical={false} stroke={palette.grey[800]} />
+                        <XAxis
+                            dataKey="name"
+                            axisLine={false}
+                            tickLine={false}
+                            style={{ fontSize: "10px" }}
+                        />
+                        <YAxis axisLine={false} tickLine={false} style={{ fontSize: "10px" }} />
+                        <Tooltip />
                         <defs>
                             <linearGradient id="colorIncome" x1="0" y1="0" x2="0" y2="1">
                                 <stop
                                     offset="5%"
                                     stopColor={palette.primary[300]}
-                                    stopOpacity={0.5}
+                                    stopOpacity={1}
                                 />
                                 <stop
                                     offset="95%"
@@ -103,120 +201,10 @@ const Row1 = () => {
                                 <stop
                                     offset="95%"
                                     stopColor={palette.primary[300]}
-                                    stopOpacity={0}
+                                    stopOpacity={0.2}
                                 />
                             </linearGradient>
                         </defs>
-                        <XAxis dataKey="name" tickLine={false} style={{ fontSize: "10px" }} />
-                        <YAxis
-                            axisLine={{ strokeWidth: "0" }}
-                            tickLine={false}
-                            style={{ fontSize: "10px" }}
-                            domain={[8000, 23000]}
-                        />
-                        <Tooltip />
-                        <Area
-                            type="monotone"
-                            dataKey="income"
-                            dot={true}
-                            stroke={palette.primary.main}
-                            fillOpacity={1}
-                            fill="url(#colorIncome)"
-                        />
-                        <Area
-                            type="monotone"
-                            dataKey="expenses"
-                            dot={true}
-                            stroke={palette.primary.main}
-                            fillOpacity={1}
-                            fill="url(#colorExpenses)"
-                        />
-                    </AreaChart>
-                </ResponsiveContainer>
-            </DashboardBox>
-
-            <DashboardBox gridArea="b">
-                <BoxHeader
-                    title="Income and Net Income"
-                    subtitle="top line represents income, bottom line represents net income"
-                    sideText="+4%"
-                />
-                <ResponsiveContainer width="100%" height="100%">
-                    <LineChart
-                        data={incomeNetIncome}
-                        margin={{
-                            top: 20,
-                            right: 0,
-                            left: -10,
-                            bottom: 55,
-                        }}
-                    >
-                        <CartesianGrid vertical={false} stroke={palette.grey[800]} />
-                        <XAxis dataKey="name" tickLine={false} style={{ fontSize: "10px" }} />
-                        <YAxis
-                            yAxisId="left"
-                            axisLine={false}
-                            tickLine={false}
-                            style={{ fontSize: "10px" }}
-                        />
-                        <YAxis
-                            yAxisId="right"
-                            orientation="right"
-                            axisLine={false}
-                            tickLine={false}
-                            style={{ fontSize: "10px" }}
-                        />
-                        <Tooltip />
-                        <Legend
-                            height={20}
-                            wrapperStyle={{
-                                margin: "0 0 10px 0",
-                            }}
-                        />
-                        <Line
-                            yAxisId="left"
-                            type="monotone"
-                            dataKey="netIncome"
-                            name="net income"
-                            stroke={palette.tertiary[500]}
-                        />
-                        <Line
-                            yAxisId="right"
-                            type="monotone"
-                            dataKey="income"
-                            stroke={palette.primary.main}
-                        />
-                    </LineChart>
-                </ResponsiveContainer>
-            </DashboardBox>
-
-            <DashboardBox gridArea="c">
-                <BoxHeader
-                    title="Income Month by Month"
-                    subtitle="graph representing monthly income"
-                    sideText="+4%"
-                />
-                <ResponsiveContainer width="100%" height="100%">
-                    <BarChart
-                        width={500}
-                        height={300}
-                        data={income}
-                        margin={{
-                            top: 17,
-                            right: 15,
-                            left: -5,
-                            bottom: 58,
-                        }}
-                    >
-                        <CartesianGrid vertical={false} stroke={palette.grey[800]} />
-                        <XAxis
-                            dataKey="name"
-                            axisLine={false}
-                            tickLine={false}
-                            style={{ fontSize: "10px" }}
-                        />
-                        <YAxis axisLine={false} tickLine={false} style={{ fontSize: "10px" }} />
-                        <Tooltip />
                         <Bar dataKey="income" fill="url(#colorIncome)" />
                     </BarChart>
                 </ResponsiveContainer>

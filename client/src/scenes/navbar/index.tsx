@@ -4,9 +4,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 import FlexBetween from "@/components/FlexBetween";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
-type Props = {};
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
     const { palette } = useTheme();
     const [selected, setSelected] = useState("dashboard");
     return (
@@ -30,7 +28,7 @@ const Navbar = (props: Props) => {
                             textDecoration: "inherit",
                         }}
                     >
-                        dashboard
+                        Dashboard
                     </Link>
                 </Box>
                 <Box sx={{ "&:hover": { color: palette.primary[100] } }}>
@@ -42,7 +40,7 @@ const Navbar = (props: Props) => {
                             textDecoration: "inherit",
                         }}
                     >
-                        predictions
+                        Predictions
                     </Link>
                 </Box>
             </FlexBetween>

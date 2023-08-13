@@ -1,12 +1,12 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, SvgIcon, Typography, useTheme } from "@mui/material";
 import FlexBetween from "./FlexBetween";
 import React from "react";
 
 type Props = {
-    icon?: React.ReactNode;
+    icon?: typeof SvgIcon;
     title: string;
     subtitle?: string;
-    sideText: string;
+    sideText?: string;
 };
 
 const BoxHeader = ({ icon, title, subtitle, sideText }: Props) => {
@@ -14,17 +14,22 @@ const BoxHeader = ({ icon, title, subtitle, sideText }: Props) => {
     return (
         <FlexBetween color={palette.grey[400]} margin="1.5rem 1rem 0 1rem">
             <FlexBetween>
-                {icon}
                 <Box width="100%">
-                    <Typography variant="h4" mb="-0.1rem">
+                    <Typography variant="h3" mb="-0.1rem">
                         {title}
                     </Typography>
-                    <Typography variant="h6">{subtitle}</Typography>
+                    <Typography variant="h5">{subtitle}</Typography>
                 </Box>
             </FlexBetween>
-            <Typography varaint="h5" fontWeight="700" color={palette.secondary[500]}>
+            <Typography variant="h5" fontWeight="700" color={palette.secondary[500]}>
                 {sideText}
             </Typography>
+
+            {icon && (
+                <Box color={palette.secondary[500]}>
+                    <SvgIcon sx={{ fontSize: 24 }} component={icon} />
+                </Box>
+            )}
         </FlexBetween>
     );
 };

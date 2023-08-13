@@ -13,12 +13,13 @@ import {
     PieChart,
     Pie,
     Cell,
-    ScatterChart,
-    Scatter,
-    ZAxis,
+    AreaChart,
+    Area,
 } from "recharts";
 import { useMemo } from "react";
 import FlexBetween from "@/components/FlexBetween";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import DifferenceIcon from "@mui/icons-material/Difference";
 
 const piedata = [
     { name: "Group A", value: 600 },
@@ -58,10 +59,22 @@ const Row2 = () => {
         );
     }, [productData]);
 
+    const income = useMemo(() => {
+        return (
+            data &&
+            data[0].monthlyData.map(({ month, income }) => {
+                return {
+                    name: month.substring(0, 3),
+                    income: income,
+                };
+            })
+        );
+    }, [data]);
+
     return (
         <>
             <DashboardBox gridArea="d">
-                <BoxHeader title="Mandatory vs Non-Mandatory expenses" sideText="+4%" />
+                <BoxHeader title="Monthly Income vs Expenses" icon={DifferenceIcon} />
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                         data={mandatoryExpenses}
@@ -104,90 +117,60 @@ const Row2 = () => {
                 </ResponsiveContainer>
             </DashboardBox>
 
-            <DashboardBox gridArea="e">
-                <BoxHeader title="Campaigns and targets" sideText="+4%" />
-                <FlexBetween mt="0.25rem" gap="1.5rem" pr="1rem">
-                    <PieChart
-                        width={110}
-                        height={100}
-                        margin={{
-                            top: 0,
-                            right: -10,
-                            left: 10,
-                            bottom: 0,
-                        }}
-                    >
-                        <Pie
-                            stroke="none"
-                            data={piedata}
-                            innerRadius={18}
-                            outerRadius={38}
-                            paddingAngle={2}
-                            dataKey="value"
-                        >
-                            {piedata.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={pieColors[index]} />
-                            ))}
-                        </Pie>
-                    </PieChart>
-                    <Box ml="-0.7rem" flexBasis="40%">
-                        <Typography variant="h5">Target Sales</Typography>
-                        <Typography m="0.3rem 0" variant="h3" color={palette.primary[300]}>
-                            83
-                        </Typography>
-                        <Typography variant="h6">Finance goals of Campaign</Typography>
-                    </Box>
-                    <Box ml="-0.7rem" flexBasis="40%">
-                        <Typography variant="h5">Income losses</Typography>
-                        <Typography variant="h6" color={palette.primary[300]}>
-                            Loses down 25%
-                        </Typography>
-                        <Typography mt="0.4rem" variant="h5">
-                            Profit Margins
-                        </Typography>
-                        <Typography variant="h6">Margins up 30%</Typography>
-                    </Box>
-                </FlexBetween>
-            </DashboardBox>
-
             <DashboardBox gridArea="f">
-                <BoxHeader title="Product prices vs Expenses" sideText="+4%" />
+                <BoxHeader title="Monthly Expenses" icon={CreditCardIcon} />
                 <ResponsiveContainer width="100%" height="100%">
-                    <ScatterChart
+                    <AreaChart
+                        data={income}
                         margin={{
                             top: 20,
                             right: 25,
-                            bottom: 40,
                             left: -10,
+                            bottom: 50,
                         }}
                     >
-                        <CartesianGrid stroke={palette.grey[800]} />
-                        <XAxis
-                            type="number"
-                            dataKey="price"
-                            name="price"
-                            tickFormatter={(value) => `$${value}`}
-                            tickLine={false}
-                            axisLine={false}
-                            style={{ fontSize: "10px" }}
-                        />
+                        <defs>
+                            <linearGradient id="colorIncome" x1="0" y1="0" x2="0" y2="1">
+                                <stop
+                                    offset="5%"
+                                    stopColor={palette.primary[300]}
+                                    stopOpacity={0.5}
+                                />
+                                <stop
+                                    offset="95%"
+                                    stopColor={palette.primary[300]}
+                                    stopOpacity={0}
+                                />
+                            </linearGradient>
+                            <linearGradient id="colorExpenses" x1="0" y1="0" x2="0" y2="1">
+                                <stop
+                                    offset="5%"
+                                    stopColor={palette.primary[300]}
+                                    stopOpacity={0.5}
+                                />
+                                <stop
+                                    offset="95%"
+                                    stopColor={palette.primary[300]}
+                                    stopOpacity={0}
+                                />
+                            </linearGradient>
+                        </defs>
+                        <XAxis dataKey="name" tickLine={false} style={{ fontSize: "10px" }} />
                         <YAxis
-                            type="number"
-                            dataKey="expense"
-                            name="expense"
-                            tickFormatter={(value) => `$${value}`}
                             tickLine={false}
-                            axisLine={false}
                             style={{ fontSize: "10px" }}
+                            domain={[8000, 23000]}
                         />
-                        <ZAxis type="number" range={[20]} />
-                        <Tooltip formatter={(value) => `$${value}`} />
-                        <Scatter
-                            name="Product Expense Ratio"
-                            data={productExpenseData}
-                            fill={palette.tertiary[500]}
+                        <Tooltip />
+                        <Area
+                            type="monotone"
+                            dataKey="income"
+                            dot={true}
+                            stroke={palette.primary.main}
+                            fillOpacity={1}
+                            fill="url(#colorIncome)"
                         />
-                    </ScatterChart>
+                    </AreaChart>
                 </ResponsiveContainer>
             </DashboardBox>
         </>
