@@ -21,14 +21,17 @@ import {
 } from "recharts";
 
 const piedata = [
-    { name: "Investments", value: 600 },
+    { name: "Investments", value: 4264.63 },
     { name: "Cash", value: 400 },
 ];
+
+const investmentsValue = piedata[0].value;
+const cashValue = piedata[1].value;
 
 const Row1 = () => {
     const { palette } = useTheme();
     const { data } = useGetKpisQuery();
-    const pieColors = [palette.primary[800], palette.primary[500]];
+    const pieColors = [palette.primary[700], palette.primary[500]];
 
     const incomeExpenses = useMemo(() => {
         return (
@@ -86,7 +89,11 @@ const Row1 = () => {
             <DashboardBox gridArea="a" display="flex" alignItems="center" justifyContent="center">
                 <Box>
                     <Typography
-                        color={palette.primary[400]}
+                        sx={{
+                            background: "linear-gradient(45deg, #71eef6 30%, #085a60 90%)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                        }}
                         textAlign="center"
                         fontWeight="700"
                         fontSize={40}
@@ -94,7 +101,11 @@ const Row1 = () => {
                         {greeting}
                     </Typography>
                     <Typography
-                        color={palette.primary[700]}
+                        sx={{
+                            background: "linear-gradient(45deg, #524f82 30%, #b8b5e8 90%)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                        }}
                         textAlign="center"
                         fontWeight="600"
                         fontSize={30}
@@ -141,14 +152,14 @@ const Row1 = () => {
                         <Box flexBasis="40%">
                             <Typography variant="h3">Cash</Typography>
                             <Typography m="0.3rem 0" variant="h3" color={palette.primary[300]}>
-                                $83
+                                ${cashValue}
                             </Typography>
                             <Typography variant="h5">Chequing and Savings</Typography>
                         </Box>
                         <Box flexBasis="40%" marginTop={4}>
                             <Typography variant="h3">Investments</Typography>
                             <Typography m="0.3rem 0" variant="h3" color={palette.primary[300]}>
-                                $83
+                                ${investmentsValue}
                             </Typography>
                             <Typography variant="h5">TFSA</Typography>
                         </Box>
@@ -184,24 +195,12 @@ const Row1 = () => {
                                 <stop
                                     offset="5%"
                                     stopColor={palette.primary[300]}
-                                    stopOpacity={1}
+                                    stopOpacity={0.8}
                                 />
                                 <stop
                                     offset="95%"
                                     stopColor={palette.primary[300]}
                                     stopOpacity={0}
-                                />
-                            </linearGradient>
-                            <linearGradient id="colorExpenses" x1="0" y1="0" x2="0" y2="1">
-                                <stop
-                                    offset="5%"
-                                    stopColor={palette.primary[300]}
-                                    stopOpacity={0.5}
-                                />
-                                <stop
-                                    offset="95%"
-                                    stopColor={palette.primary[300]}
-                                    stopOpacity={0.2}
                                 />
                             </linearGradient>
                         </defs>

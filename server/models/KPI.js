@@ -34,16 +34,6 @@ const monthSchema = new Schema(
             currency: "USD",
             get: (value) => value / 100,
         },
-        mandatoryExpenses: {
-            type: mongoose.Types.Currency,
-            currency: "USD",
-            get: (value) => value / 100,
-        },
-        nonMandatoryExpenses: {
-            type: mongoose.Types.Currency,
-            currency: "USD",
-            get: (value) => value / 100,
-        },
     },
     { toJSON: { getters: true } }
 );

@@ -6,7 +6,7 @@ loadType(mongoose);
 
 const TransactionSchema = new Schema(
     {
-        buyer: {
+        merchant: {
             type: String,
             required: true,
         },
@@ -15,12 +15,12 @@ const TransactionSchema = new Schema(
             currency: "USD",
             get: (value) => value / 100,
         },
-        productIds: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Product",
-            },
-        ],
+        category: {
+            type: String,
+            ref: "Category",
+        },
+
+        date: String,
     },
     { timestamps: true, toJSON: { getters: true } }
 );

@@ -49,14 +49,14 @@ const Predictions = () => {
                 <Box>
                     <Typography variant="h3">Income and Predictions</Typography>
                     <Typography variant="h5">
-                        Income and predicted income based on linear regression model
+                        Income and predicted income based on a linear regression model
                     </Typography>
                 </Box>
                 <Button
                     onClick={() => setIsPredictions(!isPredictions)}
                     sx={{
-                        color: palette.secondary[500],
-                        bgcolor: palette.grey[700],
+                        color: isPredictions ? palette.grey[700] : palette.secondary[500],
+                        bgcolor: isPredictions ? palette.secondary[500] : palette.grey[700],
                         boxShadow: "0.1rem 0.1rem 0.1rem 0.1rem rgba(0,0,0,0.4)",
                     }}
                 >
@@ -91,7 +91,6 @@ const Predictions = () => {
                     <Line
                         type="monotone"
                         dataKey="Actual Income"
-                        name="actual income"
                         stroke={palette.primary.main}
                         strokeWidth={0}
                         dot={{ strokeWidth: 5 }}
@@ -99,7 +98,7 @@ const Predictions = () => {
                     <Line
                         type="monotone"
                         dataKey="Regression"
-                        name="regression line"
+                        name="Regression line"
                         stroke="#8884d8"
                         dot={false}
                     />
@@ -107,7 +106,6 @@ const Predictions = () => {
                         <Line
                             strokeDasharray="5 5"
                             dataKey="Predicted Income"
-                            name="predicted income"
                             stroke={palette.secondary[500]}
                             dot={false}
                         />

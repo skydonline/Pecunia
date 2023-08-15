@@ -33,14 +33,14 @@ const Row2 = () => {
 
     const pieColors = [palette.primary[800], palette.primary[300]];
 
-    const mandatoryExpenses = useMemo(() => {
+    const incomeExpenses = useMemo(() => {
         return (
             data &&
-            data[0].monthlyData.map(({ month, mandatoryExpenses, nonMandatoryExpenses }) => {
+            data[0].monthlyData.map(({ month, income, expenses }) => {
                 return {
                     name: month.substring(0, 3),
-                    mandatoryExpenses: mandatoryExpenses,
-                    nonMandatoryExpenses: nonMandatoryExpenses,
+                    income: income,
+                    expenses: expenses,
                 };
             })
         );
@@ -59,13 +59,13 @@ const Row2 = () => {
         );
     }, [productData]);
 
-    const income = useMemo(() => {
+    const expenses = useMemo(() => {
         return (
             data &&
-            data[0].monthlyData.map(({ month, income }) => {
+            data[0].monthlyData.map(({ month, expenses }) => {
                 return {
                     name: month.substring(0, 3),
-                    income: income,
+                    expenses: expenses,
                 };
             })
         );
@@ -77,7 +77,7 @@ const Row2 = () => {
                 <BoxHeader title="Monthly Income vs Expenses" icon={DifferenceIcon} />
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart
-                        data={mandatoryExpenses}
+                        data={incomeExpenses}
                         margin={{
                             top: 20,
                             right: 0,
@@ -92,6 +92,7 @@ const Row2 = () => {
                             axisLine={false}
                             tickLine={false}
                             style={{ fontSize: "10px" }}
+                            domain={[8000, 23000]}
                         />
                         <YAxis
                             yAxisId="right"
@@ -99,18 +100,19 @@ const Row2 = () => {
                             axisLine={false}
                             tickLine={false}
                             style={{ fontSize: "10px" }}
+                            domain={[8000, 23000]}
                         />
                         <Tooltip />
                         <Line
                             yAxisId="left"
                             type="monotone"
-                            dataKey="nonMandatoryExpenses"
+                            dataKey="income"
                             stroke={palette.tertiary[500]}
                         />
                         <Line
                             yAxisId="right"
                             type="monotone"
-                            dataKey="mandatoryExpenses"
+                            dataKey="expenses"
                             stroke={palette.primary.main}
                         />
                     </LineChart>
@@ -121,7 +123,7 @@ const Row2 = () => {
                 <BoxHeader title="Monthly Expenses" icon={CreditCardIcon} />
                 <ResponsiveContainer width="100%" height="100%">
                     <AreaChart
-                        data={income}
+                        data={expenses}
                         margin={{
                             top: 20,
                             right: 25,
@@ -134,19 +136,7 @@ const Row2 = () => {
                                 <stop
                                     offset="5%"
                                     stopColor={palette.primary[300]}
-                                    stopOpacity={0.5}
-                                />
-                                <stop
-                                    offset="95%"
-                                    stopColor={palette.primary[300]}
-                                    stopOpacity={0}
-                                />
-                            </linearGradient>
-                            <linearGradient id="colorExpenses" x1="0" y1="0" x2="0" y2="1">
-                                <stop
-                                    offset="5%"
-                                    stopColor={palette.primary[300]}
-                                    stopOpacity={0.5}
+                                    stopOpacity={0.8}
                                 />
                                 <stop
                                     offset="95%"
@@ -156,15 +146,11 @@ const Row2 = () => {
                             </linearGradient>
                         </defs>
                         <XAxis dataKey="name" tickLine={false} style={{ fontSize: "10px" }} />
-                        <YAxis
-                            tickLine={false}
-                            style={{ fontSize: "10px" }}
-                            domain={[8000, 23000]}
-                        />
+                        <YAxis tickLine={false} style={{ fontSize: "10px" }} />
                         <Tooltip />
                         <Area
                             type="monotone"
-                            dataKey="income"
+                            dataKey="expenses"
                             dot={true}
                             stroke={palette.primary.main}
                             fillOpacity={1}

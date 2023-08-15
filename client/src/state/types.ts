@@ -9,8 +9,6 @@ export interface Month {
     month: string;
     income: number;
     expenses: number;
-    nonMandatoryExpenses: number;
-    mandatoryExpenses: number;
 }
 
 export interface Day {
@@ -52,9 +50,10 @@ export interface GetTransactionsResponse {
     id: string;
     _id: string;
     __v: number;
-    buyer: string;
+    date: string;
+    merchant: string;
     amount: number;
-    productIds: Array<string>;
+    category: string;
     createdAt: string;
     updatedAt: string;
 }
