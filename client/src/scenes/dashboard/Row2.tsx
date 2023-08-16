@@ -92,7 +92,7 @@ const Row2 = () => {
                             axisLine={false}
                             tickLine={false}
                             style={{ fontSize: "10px" }}
-                            domain={[8000, 23000]}
+                            domain={[0, 800]}
                         />
                         <YAxis
                             yAxisId="right"
@@ -100,7 +100,7 @@ const Row2 = () => {
                             axisLine={false}
                             tickLine={false}
                             style={{ fontSize: "10px" }}
-                            domain={[8000, 23000]}
+                            domain={[0, 800]}
                         />
                         <Tooltip />
                         <Line

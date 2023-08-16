@@ -79,12 +79,12 @@ const Predictions = () => {
                         <Label value="Month" offset={-5} position="insideBottom" />
                     </XAxis>
                     <YAxis
-                        domain={[12000, 26000]}
                         axisLine={{ strokeWidth: "0" }}
                         style={{ fontSize: "10px" }}
                         tickFormatter={(value) => `$${value}`}
+                        domain={[500, 800]}
                     >
-                        <Label value="Income (USD)" offset={-5} position="insideLeft" angle={-90} />
+                        <Label value="Income" offset={-5} position="insideLeft" angle={-90} />
                     </YAxis>
                     <Tooltip />
                     <Legend verticalAlign="top" />

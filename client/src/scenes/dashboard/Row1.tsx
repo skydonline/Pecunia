@@ -22,7 +22,7 @@ import {
 
 const piedata = [
     { name: "Investments", value: 4264.63 },
-    { name: "Cash", value: 400 },
+    { name: "Cash", value: 20996.47 },
 ];
 
 const investmentsValue = piedata[0].value;
@@ -32,32 +32,6 @@ const Row1 = () => {
     const { palette } = useTheme();
     const { data } = useGetKpisQuery();
     const pieColors = [palette.primary[700], palette.primary[500]];
-
-    const incomeExpenses = useMemo(() => {
-        return (
-            data &&
-            data[0].monthlyData.map(({ month, income, expenses }) => {
-                return {
-                    name: month.substring(0, 3),
-                    income: income,
-                    expenses: expenses,
-                };
-            })
-        );
-    }, [data]);
-
-    const incomeNetIncome = useMemo(() => {
-        return (
-            data &&
-            data[0].monthlyData.map(({ month, income, expenses }) => {
-                return {
-                    name: month.substring(0, 3),
-                    income: income,
-                    netIncome: (income - expenses).toFixed(2),
-                };
-            })
-        );
-    }, [data]);
 
     const income = useMemo(() => {
         return (

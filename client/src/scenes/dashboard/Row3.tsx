@@ -7,16 +7,13 @@ import { DataGrid, GridCellParams } from "@mui/x-data-grid";
 import { useMemo } from "react";
 import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
 import CategoryIcon from "@mui/icons-material/Category";
-
+/* */
 const piedata = [
-    { name: "Transfers", value: 600 },
-    { name: "Entertainment", value: 400 },
-    { name: "Food and Drink", value: 400 },
-    { name: "Merchandise/Services", value: 400 },
-    { name: "Medical", value: 400 },
-    { name: "Personal Care", value: 400 },
-    { name: "Transportation/Travel", value: 400 },
-    { name: "Utilities", value: 400 },
+    { name: "Food and Drink", value: 427.61 },
+    { name: "Merchandise/Services", value: 327.97 },
+    { name: "Medical", value: 86.99 },
+    { name: "Personal Care", value: 501.86 },
+    { name: "Transportation/Travel", value: 154.99 },
 ];
 
 const Row3 = () => {
@@ -24,11 +21,8 @@ const Row3 = () => {
     const pieColors = [
         palette.primary[800],
         palette.primary[700],
-        palette.primary[600],
         palette.primary[500],
-        palette.primary[400],
         palette.primary[300],
-        palette.primary[200],
         palette.primary[100],
     ];
     const { data: transactionData } = useGetTransactionsQuery();
@@ -42,7 +36,7 @@ const Row3 = () => {
         .sort((a, b) => a.date - b.date)
         .reverse();
 
-    const latestTransactionsData = dateData?.slice(0, 50).map((transaction) => ({
+    const latestTransactionsData = dateData?.slice(0, 20).map((transaction) => ({
         ...transaction,
         date: transaction.date
             .toLocaleDateString("en-US", {
@@ -81,10 +75,10 @@ const Row3 = () => {
     const recurringExpensesData = [
         {
             id: "1",
-            expense: "Electricity",
-            billDate: "17",
-            amount: "40",
-            company: "Apple",
+            expense: "",
+            billDate: "",
+            amount: "",
+            company: "",
         },
     ];
 
@@ -92,7 +86,7 @@ const Row3 = () => {
         {
             field: "expense",
             headerName: "Expense Type",
-            flex: 0.6,
+            flex: 0.5,
         },
         {
             field: "company",
@@ -101,24 +95,21 @@ const Row3 = () => {
         },
         {
             field: "billDate",
-            headerName: "Bill Date",
-            flex: 0.26,
+            headerName: "Frequency",
+            flex: 0.46,
         },
         {
             field: "amount",
             headerName: "Amount",
             flex: 0.2,
-            renderCell: (params: GridCellParams) => `$${params.value}`,
+            renderCell: (params: GridCellParams) => `${params.value}`,
         },
     ];
 
     return (
         <>
             <DashboardBox gridArea="g">
-                <BoxHeader
-                    title="Recurring Expenses"
-                    sideText={`${latestTransactionsData?.length} expenses`}
-                />
+                <BoxHeader title="Recurring Expenses" sideText={`${0} expenses`} />
                 <Box
                     mt="0.5rem"
                     p="0 0.5rem"
