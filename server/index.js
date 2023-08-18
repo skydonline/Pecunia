@@ -13,6 +13,7 @@ import Product from "./models/Product.js";
 import Transaction from "./models/Transaction.js";
 import { kpisSample, products, transactions } from "./data/data-sample2.js";
 import { Configuration, PlaidApi, PlaidEnvironments } from "plaid";
+import axios from "axios";
 
 /* CONFIGURATIONS */
 dotenv.config();
@@ -27,7 +28,7 @@ app.use(cors());
 
 /* PLAID */
 const configuration = new Configuration({
-    basePath: PlaidEnvironments.sandbox,
+    basePath: PlaidEnvironments[process.env.PLAID_ENV],
     baseOptions: {
         headers: {
             "PLAID-CLIENT-ID": process.env.PLAID_CLIENT_ID,
@@ -39,37 +40,45 @@ const configuration = new Configuration({
 const plaidClient = new PlaidApi(configuration);
 
 /* Get the link token */
-app.post("/api/create_link_token", async function (req, response) {
-    // Get the client user id by searching for the current user
-    const plaidRequest = {
-        user: {
-            client_user_id: "user",
-        },
-        client_name: "Plaid Test App",
-        products: ["auth"],
-        language: "en",
-        redirect_uri: "http://localhost:5173/",
-        country_codes: ["US"],
-    };
+app.get("/get-link-token", async (req, res) => {
     try {
-        const createTokenResponse = await plaidClient.linkTokenCreate(plaidRequest);
-        response.json(createTokenResponse.data);
+        const response = await axios.post("https://development.plaid.com/link/token/create", {
+            client_id: process.env.PLAID_CLIENT_ID,
+            secret: process.env.PLAID_SECRET,
+            user: {
+                client_user_id: "user-id",
+            },
+            client_name: "Pecunia",
+            products: ["auth", "transactions"],
+            country_codes: ["US", "CA"],
+            language: "en",
+        });
+
+        res.json({ link_token: response.data.link_token });
     } catch (error) {
-        response.status(500).send("Failed to retrieve link token");
+        console.error("Error generating Link token:", error);
+        res.status(500).json({ error: "Unable to generate Link token" });
     }
 });
 
 /* Echange public token for access token */
-app.post("/api/exchange_public_token", async function (request, response, next) {
-    const publicToken = request.body.public_token;
+app.post("/exchange-public-token", async (req, res) => {
+    const { public_token } = req.body;
+
     try {
-        const plaidResponse = await plaidClient.itemPublicTokenExchange({
-            public_token: publicToken,
-        });
-        const accessToken = plaidResponse.data.access_token;
-        response.json({ accessToken });
+        const response = await axios.post(
+            `https://${process.env.PLAID_ENV}.plaid.com/item/public_token/exchange`,
+            {
+                client_id: process.env.PLAID_CLIENT_ID,
+                secret: process.env.PLAID_SECRET,
+                public_token,
+            }
+        );
+
+        res.json({ access_token: response.data.access_token });
     } catch (error) {
-        response.status(500).send("Failed to retrieve access token");
+        console.error("Error exchanging public token:", error);
+        res.status(500).json({ error: "Unable to exchange public token" });
     }
 });
 

@@ -11,30 +11,15 @@ import ConnectButton from "./components/ConnectButton";
 import AppText from "./components/AppText";
 import Column1 from "./scenes/login/Column1";
 import Column2 from "./scenes/login/Column2";
-import { usePlaidLink, PlaidLinkOnSuccess, PlaidLink } from "react-plaid-link";
+import { usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess, PlaidLink } from "react-plaid-link";
 
 /* Defines default URL */
-axios.defaults.baseURL = "http://localhost:1337";
+axios.defaults.baseURL = "http://localhost:1337/";
 
 /* Once user has logged in */
-function PlaidAuth({ publicToken }) {
+function PlaidAuth({ accessToken }) {
     const [account, setAccount] = useState();
     const theme = useMemo(() => createTheme(themeSettings), []);
-
-    useEffect(() => {
-        async function fetchData() {
-            let accessToken = await axios.post("/api/exchange_public_token", {
-                public_token: publicToken,
-            });
-            console.log("Token: ", accessToken.data);
-            const auth = await axios.post("/auth", {
-                access_token: accessToken.data.accessToken,
-            });
-            console.log("Authenticated data", auth.data);
-            setAccount(auth.data.numbers.ach[0]);
-        }
-        fetchData();
-    }, []);
 
     return (
         <div className="app">
@@ -74,42 +59,51 @@ const gridTemplateSmallScreens = `
 
 /* LOGIN PAGE */
 const App = () => {
-    // get link_token from your server when component mounts
-    useEffect(() => {
-        const createLinkToken = async () => {
-            const response = await fetch("/api/create_link_token", { method: "POST" });
-            const { link_token } = await response.json();
-            setToken(link_token);
-        };
-        createLinkToken();
-    }, []);
-
-    const [linkToken, setLinkToken] = useState();
     const [publicToken, setPublicToken] = useState();
+    const [accessToken, setAccessToken] = useState();
     const isAboveMediumScreens = useMediaQuery("(min-width: 1250px)");
     const theme = useMemo(() => createTheme(themeSettings), []);
 
+    const [linkToken, setLinkToken] = useState(null);
+
     useEffect(() => {
-        async function fetch() {
-            try {
-                const response = await axios.post("/api/create_link_token");
+        // Make a request to your server's API endpoint to obtain the link token
+        axios
+            .get("http://localhost:1337/get-link-token")
+            .then((response) => {
                 setLinkToken(response.data.link_token);
-            } catch (error) {
-                console.log("Error fetching link token:", error.response);
-            }
-        }
-        fetch();
+            })
+            .catch((error) => {
+                console.error("Error getting link token:", error);
+            });
     }, []);
 
-    const { open, ready } = usePlaidLink({
-        token: linkToken,
-        onSuccess: (public_token, metadata) => {
-            setPublicToken(public_token);
-        },
-    });
+    const onSuccess = async (publicToken, metadata) => {
+        try {
+            // Exchange the publicToken for an access_token on your server
+            const exchangeResponse = await axios.post("/exchange-public-token", {
+                public_token: publicToken,
+            });
 
-    return publicToken ? (
-        <PlaidAuth publicToken={publicToken} />
+            const accessToken = exchangeResponse.data.access_token;
+            setAccessToken(accessToken);
+            console.log("Access Token:", accessToken);
+
+            // You might want to update your app's state to indicate successful connection
+        } catch (error) {
+            console.error("Error exchanging public token:", error);
+        }
+    };
+
+    const config = {
+        token: linkToken,
+        onSuccess,
+    };
+
+    const { open, ready } = usePlaidLink(config);
+
+    return accessToken ? (
+        <PlaidAuth accessToken={accessToken} />
     ) : (
         <div>
             <ThemeProvider theme={theme}>
@@ -146,7 +140,7 @@ const App = () => {
                         <AppText fontSize={42} fontWeight={600} marginBottom={5}>
                             Finance Dashboard
                         </AppText>
-                        <ConnectButton onClick={() => open()} disabled={!ready}>
+                        <ConnectButton onClick={() => open()} disabled={!ready || !linkToken}>
                             Connect bank account
                         </ConnectButton>
                     </Box>
