@@ -4,7 +4,7 @@
 
 Created a financial dashboard.
 
-The main purpose of this project was to learn about full stack development (both server-side and frontend development), managing REST APIs, secure data handling, and enhance my proficiency of various languages/tools.
+The main purpose of this project was to learn about full stack development (both server-side and frontend development), managing REST APIs, secure data handling, enhance my proficiency of various languages/tools, and machine learning.
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
