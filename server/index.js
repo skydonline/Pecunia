@@ -61,7 +61,7 @@ app.get("/get-link-token", async (req, res) => {
     }
 });
 
-/* Echange public token for access token */
+/* Exchange public token for access token */
 app.post("/exchange-public-token", async (req, res) => {
     const { public_token } = req.body;
 
@@ -82,17 +82,28 @@ app.post("/exchange-public-token", async (req, res) => {
     }
 });
 
-/* Authenticate user */
-app.post("/auth", async function (request, response) {
+/* Get transactions data */
+app.post("/get-transactions", async (req, res) => {
+    const { accessToken } = req.body;
+
     try {
-        const access_token = request.body.access_token;
-        const plaidRequest = {
-            access_token: access_token,
-        };
-        const plaidResponse = await plaidClient.authGet(plaidRequest);
-        response.json(plaidResponse.data);
+        const response = await axios.post(
+            `https://${process.env.PLAID_ENV}.plaid.com/transactions/get`,
+            {
+                client_id: process.env.PLAID_CLIENT_ID,
+                secret: process.env.PLAID_SECRET,
+                access_token: accessToken,
+                start_date: "2023-01-01",
+                end_date: "2023-07-01",
+            }
+        );
+
+        console.log("Plaid API Response:", response.data); // Add this line
+
+        res.json({ transactions: response.data });
     } catch (error) {
-        response.status(500).send("Failed to authenticate user");
+        console.error("Plaid API Error:", error); // Add this line
+        res.status(500).json({ error: "Error fetching transactions" });
     }
 });
 

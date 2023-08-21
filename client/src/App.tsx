@@ -1,5 +1,5 @@
-import { useMemo, useEffect, useState, useCallback } from "react";
-import { Box, CssBaseline, ThemeProvider, Button, Typography, useMediaQuery } from "@mui/material";
+import { useMemo, useEffect, useState } from "react";
+import { Box, CssBaseline, ThemeProvider, useMediaQuery } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -11,15 +11,69 @@ import ConnectButton from "./components/ConnectButton";
 import AppText from "./components/AppText";
 import Column1 from "./scenes/login/Column1";
 import Column2 from "./scenes/login/Column2";
-import { usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess, PlaidLink } from "react-plaid-link";
+import { usePlaidLink } from "react-plaid-link";
 
 /* Defines default URL */
 axios.defaults.baseURL = "http://localhost:1337/";
 
 /* Once user has logged in */
 function PlaidAuth({ accessToken }) {
-    const [account, setAccount] = useState();
     const theme = useMemo(() => createTheme(themeSettings), []);
+
+    const [transactions, setTransactions] = useState([]);
+    const [accountID, setAccountID] = useState();
+
+    useEffect(() => {
+        axios
+            .post("http://localhost:1337/get-transactions", {
+                accessToken: accessToken,
+            })
+            .then((response) => {
+                console.log(response.data.transactions);
+                const accounts = response.data.transactions.accounts;
+
+                const desiredAccount = accounts.find(
+                    (account) => account.name === "CIBC Smart Account"
+                );
+
+                if (desiredAccount) {
+                    setAccountID(desiredAccount.account_id);
+                    console.log("Account ID:", accountID);
+                }
+                setTransactions(response.data.transactions.transactions);
+            })
+            .catch((error) => {
+                console.error("Error getting transactions:", error);
+            });
+    }, []);
+
+    const fetchTransactions = () => {
+        setTimeout(() => {
+            axios
+                .post("http://localhost:1337/get-transactions", {
+                    accessToken: accessToken,
+                })
+                .then((response) => {
+                    console.log("Transactions delayed:", response.data.transactions.transactions);
+                    setTransactions(response.data.transactions.transactions);
+                })
+                .catch((error) => {
+                    console.error("Error getting transactions delayed:", error);
+                });
+        }, 4000); // 4 second delay
+    };
+
+    // Incase unable to fetch transactions the first time, sometimes needs a delay
+    const executeFetchAfterDelay = () => {
+        const sumTransactions = transactions.reduce((sum, transaction) => {
+            if (transaction.account_id == accountID) {
+                return sum + transaction.amount;
+            }
+            return sum;
+        }, 0);
+        console.log(sumTransactions);
+    };
+    executeFetchAfterDelay();
 
     return (
         <div className="app">
@@ -28,6 +82,7 @@ function PlaidAuth({ accessToken }) {
                     <CssBaseline />
                     <Box width="100%" height="100%" padding="1rem 2rem 4rem 2rem">
                         <Navbar />
+                        <button onClick={fetchTransactions}>Fetch Transactions</button>
                         <Routes>
                             <Route path="/" element={<Dashboard />} />
                             <Route path="/predictions" element={<Predictions />} />
@@ -67,7 +122,7 @@ const App = () => {
     const [linkToken, setLinkToken] = useState(null);
 
     useEffect(() => {
-        // Make a request to your server's API endpoint to obtain the link token
+        // Make request to server's API endpoint to get link token
         axios
             .get("http://localhost:1337/get-link-token")
             .then((response) => {
@@ -80,16 +135,13 @@ const App = () => {
 
     const onSuccess = async (publicToken, metadata) => {
         try {
-            // Exchange the publicToken for an access_token on your server
+            // Exchange publicToken for access_token on server
             const exchangeResponse = await axios.post("/exchange-public-token", {
                 public_token: publicToken,
             });
 
             const accessToken = exchangeResponse.data.access_token;
             setAccessToken(accessToken);
-            console.log("Access Token:", accessToken);
-
-            // You might want to update your app's state to indicate successful connection
         } catch (error) {
             console.error("Error exchanging public token:", error);
         }
