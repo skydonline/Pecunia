@@ -34,13 +34,15 @@ function PlaidAuth({ accessToken }) {
                 const accounts = response.data.transactions.accounts;
 
                 const desiredAccount = accounts.find(
-                    (account) => account.name === "CIBC Smart Account"
+                    (account) => account.name == "CIBC Smart Account"
                 );
 
                 if (desiredAccount) {
                     setAccountID(desiredAccount.account_id);
                     console.log("Account ID:", accountID);
                 }
+
+                setBalance(desiredAccount.balances.current);
                 setTransactions(response.data.transactions.transactions);
             })
             .catch((error) => {
@@ -52,21 +54,8 @@ function PlaidAuth({ accessToken }) {
         fetch();
 
         // Incase unable to fetch data the first time, sometimes needs a delay
-        setTimeout(fetch, 4000);
+        setTimeout(fetch, 5000);
     }, []);
-
-    /*
-    const executeFetchAfterDelay = () => {
-        const sumTransactions = transactions.reduce((sum, transaction) => {
-            if (transaction.account_id == accountID) {
-                return sum + transaction.amount;
-            }
-            return sum;
-        }, 0);
-        console.log(sumTransactions);
-    };
-    executeFetchAfterDelay();
-    */
 
     return (
         <div className="app">
@@ -75,10 +64,17 @@ function PlaidAuth({ accessToken }) {
                     <CssBaseline />
                     <Box width="100%" height="100%" padding="1rem 2rem 4rem 2rem">
                         <Navbar />
-                        <button onClick={fetch}>Fetch Transactions</button>
                         <Routes>
-                            <Route path="/" element={<Dashboard />} />
-                            <Route path="/predictions" element={<Predictions />} />
+                            <Route
+                                path="/"
+                                element={
+                                    <Dashboard transactions={transactions} balance={balance} />
+                                }
+                            />
+                            <Route
+                                path="/predictions"
+                                element={<Predictions transactions={transactions} />}
+                            />
                         </Routes>
                     </Box>
                 </ThemeProvider>
@@ -107,7 +103,6 @@ const gridTemplateSmallScreens = `
 
 /* LOGIN PAGE */
 const App = () => {
-    const [publicToken, setPublicToken] = useState();
     const [accessToken, setAccessToken] = useState();
     const isAboveMediumScreens = useMediaQuery("(min-width: 1250px)");
     const theme = useMemo(() => createTheme(themeSettings), []);

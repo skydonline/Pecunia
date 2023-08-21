@@ -1,13 +1,12 @@
 import BoxHeader from "@/components/BoxHeader";
 import DashboardBox from "@/components/DashboardBox";
 import FlexBetween from "@/components/FlexBetween";
-import { useGetKpisQuery, useGetProductsQuery, useGetTransactionsQuery } from "@/state/api";
-import { Box, getListItemSecondaryActionClassesUtilityClass, useTheme } from "@mui/material";
+import { useGetTransactionsQuery } from "@/state/api";
+import { Box, useTheme } from "@mui/material";
 import { DataGrid, GridCellParams } from "@mui/x-data-grid";
-import { useMemo } from "react";
 import { Cell, Legend, Pie, PieChart, Tooltip } from "recharts";
 import CategoryIcon from "@mui/icons-material/Category";
-/* */
+
 const piedata = [
     { name: "Food and Drink", value: 427.61 },
     { name: "Merchandise/Services", value: 327.97 },
@@ -16,7 +15,7 @@ const piedata = [
     { name: "Transportation/Travel", value: 154.99 },
 ];
 
-const Row3 = () => {
+const Row3 = ({ transactions }) => {
     const { palette } = useTheme();
     const pieColors = [
         palette.primary[800],
@@ -26,7 +25,6 @@ const Row3 = () => {
         palette.primary[100],
     ];
     const { data: transactionData } = useGetTransactionsQuery();
-    const { data: kpiData } = useGetKpisQuery();
 
     const dateData = transactionData
         ?.map((transaction) => ({

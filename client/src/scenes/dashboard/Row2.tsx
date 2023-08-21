@@ -1,7 +1,7 @@
 import BoxHeader from "@/components/BoxHeader";
 import DashboardBox from "@/components/DashboardBox";
-import { useGetKpisQuery, useGetProductsQuery } from "@/state/api";
-import { Box, Typography, useTheme } from "@mui/material";
+import { useGetKpisQuery } from "@/state/api";
+import { useTheme } from "@mui/material";
 import {
     ResponsiveContainer,
     LineChart,
@@ -10,9 +10,6 @@ import {
     YAxis,
     Tooltip,
     Line,
-    PieChart,
-    Pie,
-    Cell,
     AreaChart,
     Area,
 } from "recharts";
@@ -21,17 +18,9 @@ import FlexBetween from "@/components/FlexBetween";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import DifferenceIcon from "@mui/icons-material/Difference";
 
-const piedata = [
-    { name: "Group A", value: 600 },
-    { name: "Group B", value: 400 },
-];
-
-const Row2 = () => {
+const Row2 = ({ transactions }) => {
     const { data } = useGetKpisQuery();
-    const { data: productData } = useGetProductsQuery();
     const { palette } = useTheme();
-
-    const pieColors = [palette.primary[800], palette.primary[300]];
 
     const incomeExpenses = useMemo(() => {
         return (
@@ -45,19 +34,6 @@ const Row2 = () => {
             })
         );
     }, [data]);
-
-    const productExpenseData = useMemo(() => {
-        return (
-            productData &&
-            productData.map(({ _id, price, expense }) => {
-                return {
-                    id: _id,
-                    price: price,
-                    expense: expense,
-                };
-            })
-        );
-    }, [productData]);
 
     const expenses = useMemo(() => {
         return (

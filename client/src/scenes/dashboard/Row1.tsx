@@ -28,7 +28,7 @@ const piedata = [
 const investmentsValue = piedata[0].value;
 const cashValue = piedata[1].value;
 
-const Row1 = () => {
+const Row1 = ({ transactions, balance }) => {
     const { palette } = useTheme();
     const { data } = useGetKpisQuery();
     const pieColors = [palette.primary[700], palette.primary[500]];

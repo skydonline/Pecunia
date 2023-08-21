@@ -48,7 +48,7 @@ const gridTemplateSmallScreens = `
   "i"
 `;
 
-const Dashboard = () => {
+const Dashboard = ({ transactions, balance }) => {
     const isAboveMediumScreens = useMediaQuery("(min-width: 1200px)");
     return (
         <Box
@@ -70,9 +70,9 @@ const Dashboard = () => {
                       }
             }
         >
-            <Row1 />
-            <Row2 />
-            <Row3 />
+            <Row1 transactions={transactions} balance={balance} />
+            <Row2 transactions={transactions} />
+            <Row3 transactions={transactions} />
         </Box>
     );
 };
