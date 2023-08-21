@@ -21,9 +21,10 @@ function PlaidAuth({ accessToken }) {
     const theme = useMemo(() => createTheme(themeSettings), []);
 
     const [transactions, setTransactions] = useState([]);
+    const [balance, setBalance] = useState();
     const [accountID, setAccountID] = useState();
 
-    useEffect(() => {
+    const fetch = () => {
         axios
             .post("http://localhost:1337/get-transactions", {
                 accessToken: accessToken,
@@ -45,25 +46,16 @@ function PlaidAuth({ accessToken }) {
             .catch((error) => {
                 console.error("Error getting transactions:", error);
             });
-    }, []);
-
-    const fetchTransactions = () => {
-        setTimeout(() => {
-            axios
-                .post("http://localhost:1337/get-transactions", {
-                    accessToken: accessToken,
-                })
-                .then((response) => {
-                    console.log("Transactions delayed:", response.data.transactions.transactions);
-                    setTransactions(response.data.transactions.transactions);
-                })
-                .catch((error) => {
-                    console.error("Error getting transactions delayed:", error);
-                });
-        }, 4000); // 4 second delay
     };
 
-    // Incase unable to fetch transactions the first time, sometimes needs a delay
+    useEffect(() => {
+        fetch();
+
+        // Incase unable to fetch data the first time, sometimes needs a delay
+        setTimeout(fetch, 4000);
+    }, []);
+
+    /*
     const executeFetchAfterDelay = () => {
         const sumTransactions = transactions.reduce((sum, transaction) => {
             if (transaction.account_id == accountID) {
@@ -74,6 +66,7 @@ function PlaidAuth({ accessToken }) {
         console.log(sumTransactions);
     };
     executeFetchAfterDelay();
+    */
 
     return (
         <div className="app">
@@ -82,7 +75,7 @@ function PlaidAuth({ accessToken }) {
                     <CssBaseline />
                     <Box width="100%" height="100%" padding="1rem 2rem 4rem 2rem">
                         <Navbar />
-                        <button onClick={fetchTransactions}>Fetch Transactions</button>
+                        <button onClick={fetch}>Fetch Transactions</button>
                         <Routes>
                             <Route path="/" element={<Dashboard />} />
                             <Route path="/predictions" element={<Predictions />} />
