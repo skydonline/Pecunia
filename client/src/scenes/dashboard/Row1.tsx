@@ -1,6 +1,5 @@
 import BoxHeader from "@/components/BoxHeader";
 import DashboardBox from "@/components/DashboardBox";
-import FlexBetween from "@/components/FlexBetween";
 import { useGetKpisQuery } from "@/state/api";
 import { Box, Typography, useTheme } from "@mui/material";
 import LocalAtmIcon from "@mui/icons-material/LocalAtm";
@@ -20,18 +19,17 @@ import {
     Cell,
 } from "recharts";
 
-const piedata = [
-    { name: "Investments", value: 4264.63 },
-    { name: "Cash", value: 20996.47 },
-];
-
-const investmentsValue = piedata[0].value;
-const cashValue = piedata[1].value;
-
-const Row1 = ({ transactions, balance }) => {
+const Row1 = ({ filteredTransactions, transactions, balance }) => {
     const { palette } = useTheme();
     const { data } = useGetKpisQuery();
     const pieColors = [palette.primary[700], palette.primary[500]];
+    const piedata = [
+        { name: "Investments", value: 4264.63 },
+        { name: "Cash", value: balance },
+    ];
+
+    const investmentsValue = piedata[0].value;
+    const cashValue = piedata[1].value;
 
     const income = useMemo(() => {
         return (

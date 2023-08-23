@@ -21,6 +21,7 @@ function PlaidAuth({ accessToken }) {
     const theme = useMemo(() => createTheme(themeSettings), []);
 
     const [transactions, setTransactions] = useState([]);
+    const [filteredTransactions, setFilteredTransactions] = useState([]);
     const [balance, setBalance] = useState();
     const [accountID, setAccountID] = useState();
 
@@ -44,6 +45,13 @@ function PlaidAuth({ accessToken }) {
 
                 setBalance(desiredAccount.balances.current);
                 setTransactions(response.data.transactions.transactions);
+                setFilteredTransactions(
+                    transactions.filter((record) => record.account_id == accountID)
+                );
+                console.log(transactions.reduce((sum, record) => sum + record.amount, 0));
+                console.log("Balance:", balance);
+                console.log("Transactions:", transactions);
+                console.log("Filtered Transactions:", filteredTransactions);
             })
             .catch((error) => {
                 console.error("Error getting transactions:", error);
@@ -68,12 +76,21 @@ function PlaidAuth({ accessToken }) {
                             <Route
                                 path="/"
                                 element={
-                                    <Dashboard transactions={transactions} balance={balance} />
+                                    <Dashboard
+                                        filteredTransactions={filteredTransactions}
+                                        transactions={transactions}
+                                        balance={balance}
+                                    />
                                 }
                             />
                             <Route
                                 path="/predictions"
-                                element={<Predictions transactions={transactions} />}
+                                element={
+                                    <Predictions
+                                        filteredTransactions={filteredTransactions}
+                                        transactions={transactions}
+                                    />
+                                }
                             />
                         </Routes>
                     </Box>

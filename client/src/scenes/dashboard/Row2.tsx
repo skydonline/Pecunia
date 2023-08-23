@@ -14,11 +14,10 @@ import {
     Area,
 } from "recharts";
 import { useMemo } from "react";
-import FlexBetween from "@/components/FlexBetween";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import DifferenceIcon from "@mui/icons-material/Difference";
 
-const Row2 = ({ transactions }) => {
+const Row2 = ({ filteredTransactions, transactions }) => {
     const { data } = useGetKpisQuery();
     const { palette } = useTheme();
 
